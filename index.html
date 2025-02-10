@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Reseñas de Restaurantes</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>¡Ayúdanos a mejorar nuestra guía de restaurantes!</h1>
+        <form id="survey" onsubmit="return submitSurvey(event)">
+            <label for="restaurant">¿Cuál es tu restaurante favorito?</label>
+            <input type="text" id="restaurant" required>
+            <label for="dish">¿Qué plato recomiendas?</label>
+            <input type="text" id="dish" required>
+            <label for="reason">¿Por qué te gusta ese lugar?</label>
+            <textarea id="reason" required></textarea>
+            <button type="submit">Enviar Reseña</button>
+        </form>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

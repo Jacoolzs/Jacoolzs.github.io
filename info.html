@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Kamila 💖</title>
+    <link rel="stylesheet" href="css/proposal.css">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@latest/dist/tsparticles.min.js"></script>
+    <style>
+        .final-question {
+            opacity: 0; /* Inicialmente oculto */
+            transform: translateY(20px); /* Desplazado hacia abajo */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Transición suave */
+        }
+
+        .final-question.visible {
+            opacity: 1; /* Visibilidad total */
+            transform: translateY(0); /* Regresa a su posición original */
+        }
+    </style>
+</head>
+<body>
+    <div id="tsparticles"></div>
+    <div class="container">
+        <div class="intro">
+            <h1>Kamila, esto es para ti...</h1>
+            <p class="typing">Desde el momento en que te conocí te me hiciste una niña muy linda. Agradezco a la vida por ponerte en mi camino y permitirme estar contigo hasta el día de hoy. Nunca me arrepentiré de haberte elegido a ti como mi primera novia, mi primera compañera, y mi primer todo. Espero que la vida nos permita a ambos que estemos juntos por siempre, porque realmente me haces muy feliz. Cada vez que veo tu sonrisa, tus ojitos, tu carita hermosa y todo de ti, mi corazón se detiene un momento para asimilar lo enamorado que estoy de ti. Te amo demasiado mi amor y eres lo mejor que he tenido en todo este tiempo.</p>
+        </div>
+
+        <section class="who-is">
+            <h2>¿Quién es Kamila?</h2>
+            <p class="fade-in justified">Kamila es lo mejor que tengo en mi vida...</p>
+            <p class="fade-in delay justified">Kamila es aquella persona que pienso al despertar...</p>
+            <p class="fade-in delay-2 justified">Kamila es niña que quiero que este conmigo por el resto de mi vida...</p>
+        </section>
+
+        <section class="gallery">
+            <h2>Nuestros momentos juntos</h2>
+        </section>
+
+        <div class="gallery-container"> 
+            <button class="prev">⬅️</button>
+            <div class="photo-container">
+                <div class="photo active" style="background-image: url('img/photo1.jpg');" data-note="Nuestro primer día juntos"></div>
+                <div class="photo" style="background-image: url('img/photo2.jpg');" data-note="Aquel día especial"></div>
+                <div class="photo" style="background-image: url('img/photo3.jpg');" data-note="El momento perfecto"></div>
+                <div class="photo" style="background-image: url('img/photo4.jpg');" data-note="Nuestro viaje"></div>
+                <div class="photo" style="background-image: url('img/photo5.jpg');" data-note="Nuestra primera foto"></div>
+                <div class="photo" style="background-image: url('img/photo6.jpg');" data-note="Un día inolvidable"></div>
+                <div class="photo" style="background-image: url('img/photo7.jpg');" data-note="Risas sin fin"></div>
+                <div class="photo" style="background-image: url('img/photo8.jpg');" data-note="Nuestra mejor aventura"></div>
+                <div class="photo" style="background-image: url('img/photo9.jpg');" data-note="Un beso bajo la luna"></div>
+                <div class="photo" style="background-image: url('img/photo10.jpg');" data-note="Nuestro aniversario"></div>
+            </div>
+            <button class="next">➡️</button>
+        </div>
+
+        <!-- Contenedor para mostrar el texto (data-note) de la foto activa -->
+        <div id="photo-note" class="photo-note"></div>
+
+        <section class="final-question">
+            <h2>Kamila, ¿quieres ser mi San Valentín? 💖</h2>
+            <div class="buttons">
+                <button class="yes-btn">¡Sí!</button>
+                <button class="yes-btn">¡Claro que sí!</button>
+            </div>
+        </section>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="music/cigarettes-after-sex.mp3" type="audio/mpeg">
+    </audio>
+    <button class="music-btn" onclick="toggleMusic()">🎶</button>
+    
+    <script src="js/proposal.js"></script>
+    <script>
+        // Script para manejar la galería de fotos
+        const photos = document.querySelectorAll('.photo');
+        const photoNote = document.getElementById('photo-note');
+        let currentIndex = 0;
+
+        function updateActivePhoto() {
+            photos.forEach((photo, index) => {
+                if (index === currentIndex) {
+                    photo.classList.add('active');
+                    photoNote.innerText = photo.getAttribute('data-note'); // Actualiza el note
+                } else {
+                    photo.classList.remove('active');
+                }
+            });
+        }
+
+        document.querySelector('.next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % photos.length; // Avanza al siguiente
+            updateActivePhoto();
+        });
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length; // Retrocede al anterior
+            updateActivePhoto();
+        });
+
+        // Inicializar la galería
+        updateActivePhoto();
+
+        // Animación de revelación al hacer scroll para la sección final-question
+        document.addEventListener('scroll', () => {
+            const finalQuestion = document.querySelector('.final-question');
+            const finalQuestionPosition = finalQuestion.getBoundingClientRect().top;
+
+            // Verifica si el elemento está visible en la ventana
+            if (finalQuestionPosition < window.innerHeight) {
+                finalQuestion.classList.add('visible'); // Añade la clase para la animación
+            }
+        });
+    </script>
+</body>
+</html>
